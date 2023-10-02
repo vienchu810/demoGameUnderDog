@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,17 +7,16 @@ using UnityEngine.SceneManagement;
 public class player : MonoBehaviour
 {
     public float vantoc;
-    private float tocdo = 5f;
+    private float Speed = 5f;
     private bool chuyenhuong = false;
     private bool huongquay = true;
     public float nhay;
     public float delaydie= 2f;
-    private bool dat = true;
+    private bool Ground = true;
     private bool water = true;
     private Animator hoathoa;
     private Rigidbody2D rigidbody2D;
-    public int luongmau;
-    public int maxluongmau=12;
+  
     public AudioSource audio;
     public AudioClip diedpl;
     public GameObject die;
@@ -29,16 +28,15 @@ public class player : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         hoathoa = GetComponent<Animator>();
-        luongmau = maxluongmau;
+      
     }
 
     // Update is called once per frame
     void Update()
     {
-        hoathoa.SetFloat("tocdo", tocdo);
-        hoathoa.SetBool("nendat", dat);
+        hoathoa.SetFloat("Speed", Speed);
+        hoathoa.SetBool("Ground", Ground);
   
-        hoathoa.SetBool("nuoc", water);
         Nhay();
        
        
@@ -49,11 +47,7 @@ public class player : MonoBehaviour
     private void FixedUpdate()
     {
         Dichuyen();
-        if (luongmau <= 0)
-        {
 
-            died();
-        }
     
     }
 
@@ -64,7 +58,7 @@ public class player : MonoBehaviour
       
         float phaitrai = Input.GetAxis("Horizontal");
         rigidbody2D.velocity = new Vector2(vantoc * phaitrai, rigidbody2D.velocity.y);
-        tocdo = Mathf.Abs(vantoc * phaitrai);
+        Speed = Mathf.Abs(vantoc * phaitrai);
         float d = Input.GetAxis("Vertical");
         if (phaitrai > 0 && !huongquay) Huongquay();
         if (phaitrai < 0 && huongquay) Huongquay();
@@ -79,12 +73,12 @@ public class player : MonoBehaviour
     void Nhay()
     {
 
-        if (Input.GetKeyDown(KeyCode.W) && dat == true)
+        if (Input.GetKeyDown(KeyCode.W) && Ground == true)
         {
               Debug.Log("bay lên");
-            if (dat)
+            if (Ground)
                 rigidbody2D.AddForce((Vector2.up) * nhay);
-            dat = false;
+            Ground = false;
         }
     }
 
@@ -102,19 +96,19 @@ public class player : MonoBehaviour
       
       // Destroy(Instantiate(explosion, transform.position, Quaternion.identity), 1.5f);
     }
-    public void Addhp(int cuuthuong)
-    {
-        luongmau += cuuthuong;
-    }
-    public void Damage(int dame)
-    {
-        luongmau -= dame;
+    // public void Addhp(int cuuthuong)
+    // {
+    //     luongmau += cuuthuong;
+    // }
+    // public void Damage(int dame)
+    // {
+    //     luongmau -= dame;
       
-    }
+    // }
     void OnTriggerEnter2D(Collider2D collision) { 
-     if (collision.tag == "nendat")
+     if (collision.tag == "Ground")
       {
-        dat = false;
+        Ground = false;
        
          }
 
@@ -134,9 +128,9 @@ public class player : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "nendat")
+        if (collision.tag == "Ground")
           {
-        dat = true;
+        Ground = true;
      
           water = false;
           }
@@ -144,9 +138,9 @@ public class player : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-          if (collision.tag == "nendat")
+          if (collision.tag == "Ground")
           {
-        dat = false;
+        Ground = false;
         
           }
 

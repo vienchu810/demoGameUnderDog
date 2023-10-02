@@ -6,19 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class player : MonoBehaviour
 {
-    public float vantoc;
+    public float vanToc;
     private float Speed = 5f;
-    private bool chuyenhuong = false;
-    private bool huongquay = true;
+    private bool chuyenHuong = false;
+    private bool huongQuay = true;
     public float nhay;
-    public float delaydie= 2f;
+    public float delayDie= 2f;
     private bool Ground = true;
     private bool water = true;
-    private Animator hoathoa;
+    private Animator animatorPlayer;
     private Rigidbody2D rigidbody2D;
   
     public AudioSource audio;
-    public AudioClip diedpl;
+    public AudioClip audioDie;
     public GameObject die;
 
     public GameObject pauseUI;
@@ -27,15 +27,15 @@ public class player : MonoBehaviour
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-        hoathoa = GetComponent<Animator>();
+        animatorPlayer = GetComponent<Animator>();
       
     }
 
     // Update is called once per frame
     void Update()
     {
-        hoathoa.SetFloat("Speed", Speed);
-        hoathoa.SetBool("Ground", Ground);
+        animatorPlayer.SetFloat("Speed", Speed);
+        animatorPlayer.SetBool("Ground", Ground);
   
         Nhay();
        
@@ -56,17 +56,17 @@ public class player : MonoBehaviour
   public void Dichuyen()
     {
       
-        float phaitrai = Input.GetAxis("Horizontal");
-        rigidbody2D.velocity = new Vector2(vantoc * phaitrai, rigidbody2D.velocity.y);
-        Speed = Mathf.Abs(vantoc * phaitrai);
+        float phaiTrai = Input.GetAxis("Horizontal");
+        rigidbody2D.velocity = new Vector2(vanToc * phaiTrai, rigidbody2D.velocity.y);
+        Speed = Mathf.Abs(vanToc * phaiTrai);
         float d = Input.GetAxis("Vertical");
-        if (phaitrai > 0 && !huongquay) Huongquay();
-        if (phaitrai < 0 && huongquay) Huongquay();
+        if (phaiTrai > 0 && !huongQuay) Huongquay();
+        if (phaiTrai < 0 && huongQuay) Huongquay();
         
     }
     void Huongquay()
     {
-        huongquay = !huongquay;
+        huongQuay = !huongQuay;
         transform.Rotate(0f, 180f, 0f);
         
     }
@@ -85,9 +85,9 @@ public class player : MonoBehaviour
     public void died()
     {
         // biud lai màn chơi
-         if (audio && diedpl)
+         if (audio && audioDie)
          {
-           audio.PlayOneShot(diedpl);
+           audio.PlayOneShot(audioDie);
            //  Destroy(Instantiate(die, transform.position, Quaternion.identity), 1.5f);
              SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
            
@@ -111,20 +111,6 @@ public class player : MonoBehaviour
         Ground = false;
        
          }
-
-        if (collision.CompareTag("nuoc"))
-        {
-            water = true;
-        }
-        else if (collision.CompareTag("nuoc"))
-        {
-            if (!water)
-                return;
-            //   rigidbody2D.AddForce(Vector2.up * nhay, ForceMode2D.Impulse);
-        }
-
-        // water = true;
-
     }
     void OnTriggerStay2D(Collider2D collision)
     {
@@ -143,12 +129,6 @@ public class player : MonoBehaviour
         Ground = false;
         
           }
-
-          if (collision.CompareTag("nuoc"))
-           {
-        water = false;
-        }
-
 
     }
 }

@@ -70,7 +70,7 @@ public class player : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
         
     }
-    void Nhay()
+   public void Nhay()
     {
 
         if (Input.GetKeyDown(KeyCode.W) && Ground == true)

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b1d28e1b6df71d84aa20d9b99525f206
+guid: 4ea1c6bcb23a2004087763635791fa06
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -65,7 +65,7 @@ TextureImporter:
   ignorePngGamma: 0
   applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: _Layer_-4_0
+      name: Frame 15_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 123
-        height: 112
+        x: 1
+        y: 295
+        width: 2879
+        height: 1145
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,29 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da4f021446d89194ebbc4b552031ae43
-      internalID: -1438082423
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Layer_-4_1
-      rect:
-        serializedVersion: 2
-        x: 175
-        y: 2
-        width: 75
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 30c0f8406417bd24581be0cf633f6fc3
-      internalID: 1188117118
+      spriteID: 43b50d9dee3060341b8a3f8c7f31f656
+      internalID: -1749986400
       vertices: []
       indices: 
       edges: []
@@ -175,8 +154,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      _Layer_-4_0: -1438082423
-      _Layer_-4_1: 1188117118
+      Frame 15_0: -1749986400
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
